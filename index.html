@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我爱背单词 - 轻松学单词</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app-container">
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <span>我爱背单词</span>
+            </div>
+            <div class="nav-center">
+                <div class="nav-item active" data-section="home">首页</div>
+                <div class="nav-item" data-section="learning">学习</div>
+                <div class="nav-item" data-section="wordbook">词库</div>
+                <div class="nav-item entertainment" data-section="entertainment">娱乐 🎮</div>
+                <div class="nav-item" data-section="my">我的</div>
+            </div>
+            <div class="user-info">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <button class="login-btn" id="loginBtn">登录</button>
+                <button class="register-btn" id="registerBtn">注册</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 内容区域 -->
+    <div class="container content">
+        <!-- 首页 -->
+        <div class="section active" id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>我爱背单词</h1>
+                    <p>轻松学单词，快乐记词汇</p>
+                    <button class="btn btn-primary" id="startLearningBtn">开始学习</button>
+                </div>
+            </div>
+            
+            <!-- 快捷入口 -->
+            <div class="quick-actions">
+                <button class="btn btn-primary" id="continueLearningBtn">继续背词</button>
+                <button class="btn btn-entertainment" id="todayChallengeBtn">今日闯关</button>
+            </div>
+            
+            <div class="feature-cards">
+                <div class="feature-card" onclick="switchSection('learning')">
+                    <div class="feature-icon">📚</div>
+                    <h3>高效学习</h3>
+                    <p>科学的学习方法，让单词记忆更轻松</p>
+                </div>
+                <div class="feature-card" onclick="switchSection('my')">
+                    <div class="feature-icon">📊</div>
+                    <h3>学习统计</h3>
+                    <p>详细的学习数据，掌握学习进度</p>
+                </div>
+                <div class="feature-card" onclick="switchSection('wordbook')">
+                    <div class="feature-icon">📝</div>
+                    <h3>词库管理</h3>
+                    <p>个性化词库，针对性学习</p>
+                </div>
+                <div class="feature-card" onclick="switchSection('entertainment')">
+                    <div class="feature-icon">🎮</div>
+                    <h3>娱乐模式</h3>
+                    <p>单词消消乐，边玩边学</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 学习模块 -->
+        <div class="section" id="learning">
+            <div class="word-progress">
+                <span class="progress-label">今日目标: 50词</span>
+                <span class="progress-value">已完成: 23词</span>
+            </div>
+            <div class="word-card">
+                <h2 id="currentWord">abandon</h2>
+                <p id="wordMeaning">放弃；遗弃</p>
+                <div class="word-actions">
+                    <button class="btn btn-primary" id="playPronunciation">发音</button>
+                    <button class="btn btn-secondary" id="showExample">例句</button>
+                </div>
+                <div id="wordExample" class="example"></div>
+            </div>
+        </div>
+        </div>
+        
+        <!-- 我的模块 -->
+        <div class="section" id="my">
+            <h2>我的模块</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                <!-- 学习数据 -->
+                <div class="card">
+                    <h3>学习数据</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalWords">0</div>
+                            <div class="stat-label">已学单词</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="learningTime">0</div>
+                            <div class="stat-label">学习时长(分钟)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="correctRate">0%</div>
+                            <div class="stat-label">正确率</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 娱乐数据 -->
+                <div class="card">
+                    <h3>娱乐数据</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="gameScore">0</div>
+                            <div class="stat-label">游戏积分</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="eliminatedWords">0</div>
+                            <div class="stat-label">消除单词</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="gamePlayed">0</div>
+                            <div class="stat-label">游戏次数</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 排行榜 -->
+            <div class="ranking-card card">
+                <h3>排行榜</h3>
+                <div class="ranking-tabs">
+                    <div class="ranking-tab active">好友排行</div>
+                    <div class="ranking-tab">全网排行</div>
+                    <div class="ranking-tab">连续打卡</div>
+                </div>
+                <div class="ranking-content">
+                    <p>排行榜功能即将上线，敬请期待！</p>
+                </div>
+            </div>
+            
+            <!-- 个人设置 -->
+            <div class="card" style="margin-bottom: 2rem;">
+                <h3>个人设置</h3>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div class="tool-icon">⚙️</div>
+                        <h4>个性化设置</h4>
+                        <p>自定义娱乐模块背景和字母颜色</p>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">🔍</div>
+                        <h4>单词查询</h4>
+                        <p>快速查询单词释义</p>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">📏</div>
+                        <h4>词汇量测试</h4>
+                        <p>测试你的词汇水平</p>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">⏰</div>
+                        <h4>复习提醒</h4>
+                        <p>智能提醒复习时间</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 个性化设置 -->
+            <div class="personalization-settings card">
+                <h3>个性化设置</h3>
+                <div class="setting-group">
+                    <h4>学习模式</h4>
+                    <div class="setting-options">
+                        <div class="setting-option active">标准模式</div>
+                        <div class="setting-option">快速模式</div>
+                        <div class="setting-option">详细模式</div>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h4>界面主题</h4>
+                    <div class="setting-options">
+                        <div class="setting-option active">默认主题</div>
+                        <div class="setting-option">夜间模式</div>
+                        <div class="setting-option">护眼模式</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 词库管理 -->
+        <div class="section" id="wordbook">
+            <h2>词库管理</h2>
+            <div class="card wordbook-container">
+                <div class="wordbook-header">
+                    <h3>单词本</h3>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="搜索单词...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="word-list" id="wordList">
+                    <!-- 单词列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            <div class="card wordbook-container">
+                <div class="wordbook-header">
+                    <h3>错题本</h3>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="搜索错题...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="word-list" id="errorList">
+                    <!-- 错题列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 娱乐模块 -->
+        <div class="section" id="entertainment">
+            <h2>娱乐模块</h2>
+            <div class="game-container card">
+                <div class="game-header">
+                    <h3>单词消消乐</h3>
+                    <div class="score">积分: <span id="gameScoreDisplay">0</span></div>
+                </div>
+                
+                <!-- 游戏说明 -->
+                <div class="game-info" style="margin-bottom: 2rem; padding: 1.5rem; background-color: rgba(142, 125, 190, 0.05); border-radius: 8px;">
+                    <h4>游戏规则</h4>
+                    <p class="text-light">滑动相邻字母组成单词，消除字母获得积分，每轮游戏结束后可查看消除的单词。</p>
+                </div>
+                
+                <div class="game-mode-selector">
+                    <div class="mode-btn active" data-mode="standard">标准模式</div>
+                    <div class="mode-btn" data-mode="theme">主题模式</div>
+                    <div class="mode-btn" data-mode="challenge">闯关模式</div>
+                </div>
+                
+                <!-- 目标单词提示 -->
+                <div class="word-hint-container" style="text-align: center; margin-bottom: 1.5rem;">
+                    <div id="targetWord" style="font-size: 18px; font-weight: bold; margin-bottom: 0.5rem;">目标单词: <span id="targetWordText">APPLE</span></div>
+                    <button class="btn btn-secondary" id="pronunciationBtn" style="padding: 0.25rem 0.5rem; font-size: 12px;">🔊 发音</button>
+                </div>
+                
+                <div class="game-board" id="gameBoard">
+                    <!-- 游戏板将通过JavaScript动态生成 -->
+                </div>
+                
+                <div class="game-controls">
+                    <button class="btn btn-entertainment" id="startGameBtn">开始游戏</button>
+                    <button class="btn btn-secondary" id="resetGameBtn">重置游戏</button>
+                    <button class="btn btn-accent" id="endGameBtn">结束游戏</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 登录页面 -->
+        <div class="section" id="login">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>登录</h2>
+                    <p>欢迎回来，继续你的学习之旅</p>
+                </div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">用户名/邮箱</label>
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="loginUsername" required>
+                        <div class="form-error">请输入用户名或邮箱</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="loginPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">👁️</button>
+                        <div class="form-error">请输入密码</div>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </div>
+                    <div class="auth-toggle">
+                        还没有账号？ <a href="#" id="showRegister">立即注册</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- 注册页面 -->
+        <div class="section" id="register">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>注册</h2>
+                    <p>创建新账号，开始你的学习之旅</p>
+                </div>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">用户名</label>
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="registerUsername" required>
+                        <div class="form-error">请输入用户名</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">邮箱</label>
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="registerEmail" required>
+                        <div class="form-error">请输入有效的邮箱</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="registerPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">👁️</button>
+                        <div class="form-error">密码至少6位</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">确认密码</label>
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="registerConfirmPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerConfirmPassword')">👁️</button>
+                        <div class="form-error">两次密码不一致</div>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn btn-primary">注册</button>
+                    </div>
+                    <div class="auth-toggle">
+                        已有账号？ <a href="#" id="showLogin">立即登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    </div>
+</body>
+</html>
