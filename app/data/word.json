@@ -1,0 +1,145 @@
+[
+    {
+        "id": "大学英语四级",
+        "name": "大学英语四级",
+        "description": "大学英语四级词汇完整版",
+        "category": "中国考试",
+        "tags": [
+            "中国考试"
+        ],
+        "url": "CET4_MERGED.json",
+        "length": 7508,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "大学英语六级",
+        "name": "大学英语六级",
+        "description": "大学英语六级词汇完整版",
+        "category": "中国考试",
+        "tags": [
+            "中国考试"
+        ],
+        "url": "CET6_MERGED.json",
+        "length": 5651,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "考研词汇",
+        "name": "考研词汇",
+        "description": "研究生入学考试词汇完整版",
+        "category": "中国考试",
+        "tags": [
+            "中国考试"
+        ],
+        "url": "KAOYAN_MERGED.json",
+        "length": 9602,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "雅思词汇",
+        "name": "雅思词汇",
+        "description": "雅思考试词汇完整版",
+        "category": "国际考试",
+        "tags": [
+            "国际考试"
+        ],
+        "url": "IELTS_MERGED.json",
+        "length": 7002,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "托福词汇",
+        "name": "托福词汇",
+        "description": "托福考试词汇完整版",
+        "category": "国际考试",
+        "tags": [
+            "国际考试"
+        ],
+        "url": "TOEFL_MERGED.json",
+        "length": 13477,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "gre词汇",
+        "name": "GRE词汇",
+        "description": "GRE考试词汇完整版",
+        "category": "国际考试",
+        "tags": [
+            "国际考试"
+        ],
+        "url": "GRE_MERGED.json",
+        "length": 13714,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "gmat词汇",
+        "name": "GMAT词汇",
+        "description": "GMAT考试词汇完整版",
+        "category": "国际考试",
+        "tags": [
+            "国际考试"
+        ],
+        "url": "GMAT_MERGED.json",
+        "length": 6301,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "sat词汇",
+        "name": "SAT词汇",
+        "description": "SAT考试词汇完整版",
+        "category": "国际考试",
+        "tags": [
+            "国际考试"
+        ],
+        "url": "SAT_MERGED.json",
+        "length": 8887,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "商务英语",
+        "name": "商务英语",
+        "description": "商务英语词汇完整版",
+        "category": "专业英语",
+        "tags": [
+            "专业英语"
+        ],
+        "url": "BEC_MERGED.json",
+        "length": 5578,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "专业四级",
+        "name": "专业四级",
+        "description": "英语专业四级词汇完整版",
+        "category": "中国考试",
+        "tags": [
+            "中国考试"
+        ],
+        "url": "TEM4_MERGED.json",
+        "length": 4620,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    },
+    {
+        "id": "专业八级",
+        "name": "专业八级",
+        "description": "英语专业八级词汇完整版",
+        "category": "中国考试",
+        "tags": [
+            "中国考试"
+        ],
+        "url": "TEM8_MERGED.json",
+        "length": 12881,
+        "language": "en",
+        "translateLanguage": "zh-CN"
+    }
+]

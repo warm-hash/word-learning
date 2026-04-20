@@ -1,0 +1,41 @@
+[
+  {
+    "id": "cet4",
+    "name": "CET-4",
+    "description": "大学英语四级词库",
+    "category": "中国考试",
+    "tags": [
+      "大学英语"
+    ],
+    "url": "CET4_T.json",
+    "length": 2607,
+    "language": "en",
+    "translateLanguage": "zh-CN"
+  },
+  {
+    "id": "cet6",
+    "name": "CET-6",
+    "description": "大学英语六级词库",
+    "category": "中国考试",
+    "tags": [
+      "大学英语"
+    ],
+    "url": "CET6_T.json",
+    "length": 2345,
+    "language": "en",
+    "translateLanguage": "zh-CN"
+  },
+  {
+    "id": "kaoyan",
+    "name": "考研",
+    "description": "研究生英语入学考试词库",
+    "category": "中国考试",
+    "tags": [
+      "考研"
+    ],
+    "url": "KaoYan_3_T.json",
+    "length": 3728,
+    "language": "en",
+    "translateLanguage": "zh-CN"
+  }
+]

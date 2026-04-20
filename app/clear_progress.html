@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清空学习进度</title>
+</head>
+<body>
+    <h1>清空学习进度</h1>
+    <p>点击下方按钮清空学习进度：</p>
+    <button onclick="clearProgress()">清空学习进度</button>
+    <script>
+        function clearProgress() {
+            if (confirm('确定要清空所有学习进度吗？此操作不可恢复。')) {
+                // 清空本地存储中的学习进度
+                localStorage.removeItem('studyProgress');
+                alert('学习进度已清空');
+                // 跳转到主页
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

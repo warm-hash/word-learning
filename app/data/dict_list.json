@@ -1,0 +1,136 @@
+{
+  "dicts": [
+    {
+      "id": "大学英语四级",
+      "name": "大学英语四级",
+      "description": "大学英语四级词汇完整版",
+      "length": 7508,
+      "category": "中国考试",
+      "language": "en",
+      "url": "CET4_MERGED.json",
+      "tags": [
+        "中国考试"
+      ]
+    },
+    {
+      "id": "大学英语六级",
+      "name": "大学英语六级",
+      "description": "大学英语六级词汇完整版",
+      "length": 5651,
+      "category": "中国考试",
+      "language": "en",
+      "url": "CET6_MERGED.json",
+      "tags": [
+        "中国考试"
+      ]
+    },
+    {
+      "id": "考研词汇",
+      "name": "考研词汇",
+      "description": "研究生入学考试词汇完整版",
+      "length": 9602,
+      "category": "中国考试",
+      "language": "en",
+      "url": "KAOYAN_MERGED.json",
+      "tags": [
+        "中国考试"
+      ]
+    },
+    {
+      "id": "雅思词汇",
+      "name": "雅思词汇",
+      "description": "雅思考试词汇完整版",
+      "length": 7002,
+      "category": "国际考试",
+      "language": "en",
+      "url": "IELTS_MERGED.json",
+      "tags": [
+        "国际考试"
+      ]
+    },
+    {
+      "id": "托福词汇",
+      "name": "托福词汇",
+      "description": "托福考试词汇完整版",
+      "length": 13477,
+      "category": "国际考试",
+      "language": "en",
+      "url": "TOEFL_MERGED.json",
+      "tags": [
+        "国际考试"
+      ]
+    },
+    {
+      "id": "gre词汇",
+      "name": "GRE词汇",
+      "description": "GRE考试词汇完整版",
+      "length": 13714,
+      "category": "国际考试",
+      "language": "en",
+      "url": "GRE_MERGED.json",
+      "tags": [
+        "国际考试"
+      ]
+    },
+    {
+      "id": "gmat词汇",
+      "name": "GMAT词汇",
+      "description": "GMAT考试词汇完整版",
+      "length": 6301,
+      "category": "国际考试",
+      "language": "en",
+      "url": "GMAT_MERGED.json",
+      "tags": [
+        "国际考试"
+      ]
+    },
+    {
+      "id": "sat词汇",
+      "name": "SAT词汇",
+      "description": "SAT考试词汇完整版",
+      "length": 8887,
+      "category": "国际考试",
+      "language": "en",
+      "url": "SAT_MERGED.json",
+      "tags": [
+        "国际考试"
+      ]
+    },
+    {
+      "id": "商务英语",
+      "name": "商务英语",
+      "description": "商务英语词汇完整版",
+      "length": 5578,
+      "category": "专业英语",
+      "language": "en",
+      "url": "BEC_MERGED.json",
+      "tags": [
+        "专业英语"
+      ]
+    },
+    {
+      "id": "专业四级",
+      "name": "专业四级",
+      "description": "英语专业四级词汇完整版",
+      "length": 4620,
+      "category": "中国考试",
+      "language": "en",
+      "url": "TEM4_MERGED.json",
+      "tags": [
+        "中国考试"
+      ]
+    },
+    {
+      "id": "专业八级",
+      "name": "专业八级",
+      "description": "英语专业八级词汇完整版",
+      "length": 12881,
+      "category": "中国考试",
+      "language": "en",
+      "url": "TEM8_MERGED.json",
+      "tags": [
+        "中国考试"
+      ]
+    }
+  ]
+}

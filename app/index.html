@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我爱背单词 - 轻松学单词</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app-container">
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <span>我爱背单词</span>
+            </div>
+            <div class="nav-center">
+                <div class="nav-item active" data-section="home">首页</div>
+                <div class="nav-item" data-section="learning">学习</div>
+                <div class="nav-item" data-section="dict">词库管理</div>
+                <div class="nav-item" data-section="my">我的</div>
+            </div>
+            <div class="user-info">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <span id="userDisplayName" class="user-display" style="display:none;margin-right:0.5rem;font-size:0.9rem;color:var(--text-secondary);"></span>
+                <button class="login-btn" id="loginBtn">登录</button>
+                <button class="register-btn" id="registerBtn">注册</button>
+                <button class="register-btn" id="logoutBtn" style="display:none;">退出</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 内容区域 -->
+    <div class="container content">
+        <!-- 首页 -->
+        <div class="section active" id="home">
+            <div class="home-layout">
+                <section class="home-hero-card hero" aria-labelledby="home-hero-title">
+                    <div class="hero-content">
+                        <h1 id="home-hero-title">我爱背单词</h1>
+                        <p>轻松学单词，快乐记词汇</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" id="startLearningBtn" type="button">开始学习</button>
+                            <button class="btn btn-secondary" id="continueLearningBtn" type="button">继续背词</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="home-features" aria-label="功能入口">
+                    <div class="feature-cards">
+                        <div class="feature-card" onclick="switchSection('learning')">
+                            <div class="feature-icon">📚</div>
+                            <h3>高效学习</h3>
+                            <p>科学的学习方法，让单词记忆更轻松</p>
+                        </div>
+                        <div class="feature-card" onclick="switchSection('my')">
+                            <div class="feature-icon">📊</div>
+                            <h3>学习统计</h3>
+                            <p>详细的学习数据，掌握学习进度</p>
+                        </div>
+                        <div class="feature-card" onclick="switchSection('dict')">
+                            <div class="feature-icon">📝</div>
+                            <h3>词库管理</h3>
+                            <p>多词库切换，按场景与词根有序学习</p>
+                        </div>
+                        <div class="feature-card" onclick="startReviewPractice()">
+                            <div class="feature-icon">🔄</div>
+                            <h3>复习模式</h3>
+                            <p>定期复习，巩固记忆</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        
+        <!-- 学习模块 -->
+        <div class="section" id="learning">
+            <div class="card flex flex-col md:flex-row gap-4">
+                <div class="flex-1 flex flex-col justify-between">
+                    <div class="flex gap-3">
+                        <div class="p-1 center rounded-full bg-white">
+                            <span class="text-xl color-link">📚</span>
+                        </div>
+                        <div id="currentDictName" class="text-2xl font-bold cursor-pointer">未选择词库</div>
+                    </div>
+
+                    <div id="dictInfo" class="mt-4 space-y-2" style="display: none;">
+                        <div class="text-sm flex justify-between">
+                            <span id="estimatedCompletion">预计完成时间：</span>
+                        </div>
+                        <div class="progress-container">
+                            <div id="studyProgress" class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="text-sm flex justify-between">
+                            <span id="progressText">当前进度：已学0%</span>
+                            <span id="wordCount">0 / 0 词</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-4 gap-4">
+                        <button class="btn btn-info" onclick="showDictList()">
+                            <span>选择词库</span>
+                        </button>
+                        <button class="btn btn-danger" onclick="resetStudyRecords()">
+                            <span>重置学习记录</span>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-2 flex-1" id="noDictMessage">
+                        <div class="title">请选择词库开始学习</div>
+                        <button class="btn btn-primary" onclick="showDictList()">
+                            <span>选择词库</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 mt-4 md:mt-0" id="taskSection">
+                    <div class="flex justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 center rounded-full bg-white">
+                                <span class="text-lg color-amber">⭐</span>
+                            </div>
+                            <div class="text-xl font-bold" id="taskTitle">今日任务</div>
+                        </div>
+                        <div class="flex gap-1 items-center" id="dailyGoalSection">
+                            每日目标
+                            <div class="bg-third px-2 h-10 flex center text-2xl rounded" id="dailyGoal">0</div>
+                            词
+                            <button class="btn btn-info" id="changeGoalBtn">任务设置</button>
+                        </div>
+                    </div>
+                    <div class="flex mt-4 justify-between">
+                        <div class="stat">
+                            <div class="num" id="newWordsCount">0</div>
+                            <div class="txt">新学</div>
+                        </div>
+                        <div class="stat">
+                            <div class="num" id="reviewWordsCount">0</div>
+                            <div class="txt">复习</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-4 gap-4">
+                        <div class="flex-1">
+                            <button type="button" id="practicePrimaryStart" class="btn btn-primary w-full flex items-center justify-center" style="height:45px; border-radius: 25px; box-shadow: 0 4px 12px rgba(179, 217, 255, 0.3); white-space: nowrap;">
+                                <span class="flex items-center gap-2">
+                                    <span id="systemPracticeText">开始学习</span>
+                                    <span>→</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="flex-1">
+                            <button class="btn btn-info w-full" onclick="startFreePractice()" style="height:45px;display:flex;align-items:center;justify-center; border-radius: 25px; box-shadow: 0 4px 12px rgba(179, 217, 255, 0.3); white-space: nowrap;">
+                                <span class="flex items-center gap-2">
+                                    <span>自由练习</span>
+                                    <span>✏️</span>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="flex-1">
+                            <button class="btn btn-secondary w-full" onclick="startReviewPractice()" style="height:45px;display:flex;align-items:center;justify-center; border-radius: 25px; box-shadow: 0 4px 12px rgba(179, 217, 255, 0.2); white-space: nowrap;">
+                                <span class="flex items-center gap-2">
+                                    <span>复习模式</span>
+                                    <span>🔄</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card flex flex-col p-4 md:p-6 mt-4">
+                <div class="dict-words-card-head">
+                    <div class="dict-words-card-titles">
+                        <h3>今日任务单词</h3>
+
+                    </div>
+                    <button class="btn btn-primary shrink-0" type="button" onclick="startSystemPractice()">
+                        <span>开始学习</span>
+                    </button>
+                </div>
+                <div id="dictWordsList" class="dict-words-list max-h-80 overflow-y-auto">
+                    <!-- 词库单词列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <div class="card flex flex-col md:flex-row gap-20 p-4 md:p-6 mt-4">
+                <div class="flex-1 flex flex-col gap-3 min-w-0">
+                    <div class="title">学习统计</div>
+                    <div class="flex flex-col sm:flex-row flex-wrap gap-3 items-center w-full">
+                        <div class="stat2">
+                            <div class="num" id="todayStudyTime">0</div>
+                            <div class="txt">今日学习时长</div>
+                        </div>
+                        <div class="stat2">
+                            <div class="num" id="todayWordsCount">0</div>
+                            <div class="txt">今日学习词次</div>
+                        </div>
+                        <div class="stat2">
+                            <div class="num" id="totalStudyDays">0</div>
+                            <div class="txt">总学习天数</div>
+                        </div>
+                        <div class="stat2">
+                            <div class="num" id="totalStudyTime">0</div>
+                            <div class="txt">总学习时长</div>
+                        </div>
+                        <div class="stat2">
+                            <div class="num" id="studyStreakDays">0</div>
+                            <div class="txt">连续打卡</div>
+                        </div>
+                        <div class="stat2">
+                            <div class="num" id="weekStudyDays">0</div>
+                            <div class="txt">本周学习天数</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrink-0 flex items-center">
+                    <div id="studyCalendar" class="study-calendar">
+                        <div class="calendar-header">
+                            <span class="week-header-title">本月学习记录</span>
+                        </div>
+                        <div class="calendar-grid">
+                            <!-- 日历网格将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学习记录详情对话框 -->
+            <div id="studyDayDialog" class="dialog hidden">
+                <div class="dialog-content">
+                    <div class="dialog-header">
+                        <h3 id="studyDayDialogTitle">学习记录</h3>
+                        <button class="dialog-close" onclick="closeStudyDayDialog()">×</button>
+                    </div>
+                    <div class="dialog-body">
+                        <div id="noStudyRecord" class="text-gray-500 py-6 text-center" style="display: none;">
+                            当日无学习记录
+                        </div>
+                        <ul id="studyDayRecords" class="study-day-list max-h-70vh overflow-y-auto space-y-3"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card flex flex-col mt-4">
+                <div class="flex justify-between">
+                    <div class="title">我的词库</div>
+                    <div class="flex gap-4 items-center">
+                        <div id="deleteDictBtn" class="color-link cursor-pointer" style="display: none;" onclick="handleBatchDel()">删除</div>
+                        <div id="manageDictBtn" class="color-link cursor-pointer" onclick="toggleManageDict()">管理</div>
+                        <div class="color-link cursor-pointer" onclick="createPersonalDict()">创建个人词库</div>
+                    </div>
+                </div>
+                <div class="flex gap-4 flex-wrap mt-4" id="myDictList">
+                    <!-- 我的词库列表将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+            
+            <div class="card flex flex-col mt-4">
+                <div class="flex justify-between">
+                    <div class="title">推荐词库</div>
+                    <div class="flex gap-4 items-center">
+                        <div class="color-link cursor-pointer" onclick="showDictList()">更多</div>
+                    </div>
+                </div>
+                <div class="flex gap-4 flex-wrap mt-4" id="recommendDictList">
+                    <!-- 推荐词库列表将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 词库管理模块 -->
+        <div class="section" id="dict">
+            <h2>词库管理</h2>
+            <div class="card">
+                <div class="dict-header">
+                    <h3>选择词库</h3>
+                    <div class="search-box">
+                        <input type="text" id="dictSearch" placeholder="搜索词库...">
+                        <button id="searchBtn">🔍</button>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="importDictBtn" class="btn btn-primary">批量导入词库</button>
+                    </div>
+                </div>
+                <p>从以下词库中选择一个开始学习：</p>
+                
+                <!-- 搜索结果区域 -->
+                <div id="searchResults" class="search-results" style="display: none;">
+                    <!-- 搜索结果将通过JavaScript动态生成 -->
+                </div>
+                
+                <!-- 词库分组区域 -->
+                <div id="dictGroups" class="dict-groups">
+                    <!-- 词库分组将通过JavaScript动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 批量导入词库对话框 -->
+            <div id="importDictDialog" class="dialog" style="display: none;">
+                <div class="dialog-content">
+                    <h3>批量导入词库</h3>
+                    <p>请选择包含词库信息的JSON文件进行导入。</p>
+                    <input type="file" id="dictFileInput" accept=".json">
+                    <div class="dialog-buttons">
+                        <button id="importDictConfirm" class="btn btn-primary">导入</button>
+                        <button id="importDictCancel" class="btn btn-secondary">取消</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 单词本管理 -->
+            <div class="wordbook-container">
+                <div class="dict-header">
+                    <h3>我的单词本</h3>
+                </div>
+                <div class="wordbook-cards">
+                    <div class="wordbook-card">
+                        <h4>熟词本</h4>
+                        <p>已掌握的单词</p>
+                        <button class="btn btn-secondary" onclick="showFamiliarWords()">选择熟词本</button>
+                    </div>
+                    <div class="wordbook-card">
+                        <h4>生词本</h4>
+                        <p>需要重点关注的单词</p>
+                        <button class="btn btn-info" onclick="showDifficultWords()">选择生词本</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- 我的模块 -->
+        <div class="section" id="my">
+            <h2>我的模块</h2>
+            
+            <!-- 学习数据 -->
+            <div class="card stats-card-center">
+                <h3>学习数据</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalWords">0</div>
+                        <div class="stat-label">已学单词</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="learningTime">0</div>
+                        <div class="stat-label">学习时长(分钟)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="correctRate">0%</div>
+                        <div class="stat-label">正确率</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card study-stats-period-card" id="myStudyStatsCard">
+                <div class="study-stats-period-header">
+                    <h3>学习数据统计</h3>
+                    <p class="study-stats-period-sub">按日 / 周 / 月汇总本地学习记录</p>
+                </div>
+                <div class="study-period-tabs" role="tablist" aria-label="统计周期">
+                    <button type="button" class="study-period-tab active" data-period="day" role="tab" aria-selected="true">日</button>
+                    <button type="button" class="study-period-tab" data-period="week" role="tab" aria-selected="false">周</button>
+                    <button type="button" class="study-period-tab" data-period="month" role="tab" aria-selected="false">月</button>
+                </div>
+
+                <div id="studyPeriodPanelDay" class="study-period-panel" role="tabpanel">
+                    <p class="study-period-desc" id="myStatDayDesc"></p>
+                    <div class="study-period-summary-grid">
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatDayTime"></span>
+                            <span class="study-period-metric-label">学习时长</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatDayWords"></span>
+                            <span class="study-period-metric-label">学习词次</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatDayQuiz"></span>
+                            <span class="study-period-metric-label">答题（对/错）</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatDayRate"></span>
+                            <span class="study-period-metric-label">答题正确率</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="studyPeriodPanelWeek" class="study-period-panel study-period-panel--hidden" role="tabpanel" hidden>
+                    <p class="study-period-desc" id="myStatWeekDesc"></p>
+                    <div class="study-period-summary-grid">
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatWeekTime"></span>
+                            <span class="study-period-metric-label">学习时长</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatWeekWords"></span>
+                            <span class="study-period-metric-label">学习词次</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatWeekQuiz"></span>
+                            <span class="study-period-metric-label">答题（对/错）</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatWeekRate"></span>
+                            <span class="study-period-metric-label">答题正确率</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatWeekActive"></span>
+                            <span class="study-period-metric-label">有学习记录天数</span>
+                        </div>
+                    </div>
+                    <div class="study-period-chart-block">
+                        <div class="study-period-chart-title">本周每日学习词次</div>
+                        <div class="study-period-bars" id="myStatWeekBars"></div>
+                    </div>
+                </div>
+
+                <div id="studyPeriodPanelMonth" class="study-period-panel study-period-panel--hidden" role="tabpanel" hidden>
+                    <p class="study-period-desc" id="myStatMonthDesc"></p>
+                    <div class="study-period-summary-grid study-period-summary-grid--month">
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatMonthTime"></span>
+                            <span class="study-period-metric-label">学习时长</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatMonthWords"></span>
+                            <span class="study-period-metric-label">学习词次</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatMonthQuiz"></span>
+                            <span class="study-period-metric-label">答题（对/错）</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatMonthRate"></span>
+                            <span class="study-period-metric-label">答题正确率</span>
+                        </div>
+                        <div class="study-period-metric">
+                            <span class="study-period-metric-value" id="myStatMonthActive"></span>
+                            <span class="study-period-metric-label">有学习记录天数</span>
+                        </div>
+                    </div>
+                    <div class="study-period-chart-block">
+                        <div class="study-period-chart-title">本月每日学习词次</div>
+                        <div class="study-period-bars study-period-bars--month" id="myStatMonthBars"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 熟词本界面 -->
+        <div class="section" id="familiarWords">
+            <div class="card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2>熟词本</h2>
+                    <button class="btn btn-secondary" onclick="switchSection('dict')">返回词库管理</button>
+                </div>
+                <div id="familiarWordsList" class="dict-words-list max-h-80 overflow-y-auto">
+                    <!-- 熟词本单词列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 生词本界面 -->
+        <div class="section" id="difficultWords">
+            <div class="card">
+                <div class="flex justify-between items-center mb-4">
+                    <h2>生词本</h2>
+                    <button class="btn btn-secondary" onclick="switchSection('dict')">返回词库管理</button>
+                </div>
+                <div id="difficultWordsList" class="dict-words-list max-h-80 overflow-y-auto">
+                    <!-- 生词本单词列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+
+        
+        <!-- 登录页面 -->
+        <div class="section" id="login">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>登录</h2>
+                    <p>欢迎回来，继续你的学习之旅</p>
+                </div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">用户名/邮箱</label>
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="loginUsername" required>
+                        <div class="form-error">请输入用户名或邮箱</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">密码</label>
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="loginPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">👁️</button>
+                        <div class="form-error">请输入密码</div>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </div>
+                    <div class="auth-toggle">
+                        还没有账号？ <a href="#" id="showRegister">立即注册</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- 注册页面 -->
+        <div class="section" id="register">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2>注册</h2>
+                    <p>创建新账号，开始你的学习之旅</p>
+                </div>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="registerUsername">用户名</label>
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="registerUsername" required>
+                        <div class="form-error">请输入用户名</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">邮箱</label>
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="registerEmail" required>
+                        <div class="form-error">请输入有效的邮箱</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">密码</label>
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="registerPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">👁️</button>
+                        <div class="form-error">密码至少6位</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">确认密码</label>
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="registerConfirmPassword" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('registerConfirmPassword')">👁️</button>
+                        <div class="form-error">两次密码不一致</div>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="btn btn-primary">注册</button>
+                    </div>
+                    <div class="auth-toggle">
+                        已有账号？ <a href="#" id="showLogin">立即登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 学习页面（打字卡片布局） -->
+        <div class="section" id="practice" style="display: none;">
+            <h2 id="practiceTitle" class="practice-page-title">学习</h2>
+            <div class="typing-practice-outer">
+                <div id="practiceContent" class="typing-practice-root">
+                    <!-- 内容由 script_new.js 生成 -->
+                </div>
+                <div class="practice-actions practice-actions-bar">
+                    <button type="button" class="btn btn-secondary" onclick="previousWord()">上一词</button>
+                    <button type="button" class="btn btn-danger" onclick="exitPractice()">退出学习</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="practice_flow.js?v=202604161730"></script>
+    <script src="dict_preset.js?v=202604161900"></script>
+    <script src="practice_options.js?v=202604162000"></script>
+    <script src="inline_js.js?v=202604162130"></script>
+    <script src="script_new.js?v=202604162130"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+[
+  {
+    "word": "abandon",
+    "phonetic0": "əˈbændən",
+    "phonetic1": "əˈbændən",
+    "trans": [
+      {
+        "pos": "v.",
+        "cn": "放弃，抛弃"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "aban",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "ability",
+    "phonetic0": "əˈbɪləti",
+    "phonetic1": "əˈbɪləti",
+    "trans": [
+      {
+        "pos": "n.",
+        "cn": "能力，才能"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abil",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "able",
+    "phonetic0": "ˈeɪbl",
+    "phonetic1": "ˈeɪbl",
+    "trans": [
+      {
+        "pos": "adj.",
+        "cn": "能够的，有能力的"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abl",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "abnormal",
+    "phonetic0": "æbˈnɔːrml",
+    "phonetic1": "æbˈnɔːrml",
+    "trans": [
+      {
+        "pos": "adj.",
+        "cn": "异常的，不正常的"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abno",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "aboard",
+    "phonetic0": "əˈbɔːrd",
+    "phonetic1": "əˈbɔːrd",
+    "trans": [
+      {
+        "pos": "adv.",
+        "cn": "在船上，在飞机上"
+      },
+      {
+        "pos": "prep.",
+        "cn": "在…上"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "aboa",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "abroad",
+    "phonetic0": "əˈbrɔːd",
+    "phonetic1": "əˈbrɔːd",
+    "trans": [
+      {
+        "pos": "adv.",
+        "cn": "在国外，到国外"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abro",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "absence",
+    "phonetic0": "ˈæbsəns",
+    "phonetic1": "ˈæbsəns",
+    "trans": [
+      {
+        "pos": "n.",
+        "cn": "缺席，不在场"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abse",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "absent",
+    "phonetic0": "ˈæbsənt",
+    "phonetic1": "ˈæbsənt",
+    "trans": [
+      {
+        "pos": "adj.",
+        "cn": "缺席的，不在场的"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abse",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "absolute",
+    "phonetic0": "ˈæbsəluːt",
+    "phonetic1": "ˈæbsəluːt",
+    "trans": [
+      {
+        "pos": "adj.",
+        "cn": "绝对的，完全的"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abso",
+      "rels": []
+    },
+    "etymology": []
+  },
+  {
+    "word": "absolutely",
+    "phonetic0": "ˈæbsəluːtli",
+    "phonetic1": "ˈæbsəluːtli",
+    "trans": [
+      {
+        "pos": "adv.",
+        "cn": "绝对地，完全地"
+      }
+    ],
+    "sentences": [],
+    "phrases": [],
+    "synos": [],
+    "relWords": {
+      "root": "abso",
+      "rels": []
+    },
+    "etymology": []
+  }
+]
